@@ -16,6 +16,7 @@ func InitLog() {
 	w := io.MultiWriter(f)
 
 	log.SetOutput(w)
+	log.SetHeader("${time_rfc3339} ${level} ${prefix} ${short_file} ${line}")
 
 	go func() {
 
@@ -36,6 +37,7 @@ func InitLog() {
 
 			w := io.MultiWriter(f)
 
+			log.SetHeader("${time_rfc3339} ${level} ${prefix} ${short_file} ${line}")
 			log.SetOutput(w)
 		}
 	}()
