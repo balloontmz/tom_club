@@ -37,7 +37,7 @@ func (r *GoodsRequest) params() url.Values {
 	q := make(url.Values)
 
 	if r.APIKey != "" {
-		q.Set("apikey", r.APIKey)
+		q.Set("app_key", r.APIKey)
 	}
 	if r.Page != "" {
 		q.Set("page", r.Page)

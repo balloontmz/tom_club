@@ -5,7 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -205,24 +204,4 @@ func (c *Client) generateAuthQuery(path string, q url.Values) (string, error) {
 		return q.Encode(), nil
 	}
 	return "", errors.New("maps: API Key missing")
-}
-
-// commonResponse contains the common response fields to most API calls inside
-// the Google Maps APIs. This is used internally.
-type commonResponse struct {
-	// Status contains the status of the request, and may contain debugging
-	// information to help you track down why the call failed.
-	Status string `json:"status"`
-
-	// ErrorMessage is the explanatory field added when Status is an error.
-	ErrorMessage string `json:"error_message"`
-}
-
-// StatusError returns an error if this object has a Status different
-// from OK or ZERO_RESULTS.
-func (c *commonResponse) StatusError() error {
-	if c.Status != "OK" && c.Status != "ZERO_RESULTS" {
-		return fmt.Errorf("maps: %s - %s", c.Status, c.ErrorMessage)
-	}
-	return nil
 }
