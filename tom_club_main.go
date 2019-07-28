@@ -2,9 +2,8 @@ package main
 
 import (
 	conf "tom_club/app/config"
+	"tom_club/app/model"
 	routeregister "tom_club/app/routes"
-
-	"github.com/labstack/gommon/log"
 )
 
 func main() {
@@ -12,7 +11,11 @@ func main() {
 
 	conf.InitLog() // 此配置初步测试成功，如果新建文件夹需先创建文件夹
 
-	log.Print("测试")
+	if _, err := model.InitDB(conf.DBConfig("config.ini")); err != nil { // 初始化数据库链接
+		panic(err)
+	}
+
+	model.Migrate() // 数据库迁移
 
 	router := routeregister.NewEngine() // 初始化路由
 

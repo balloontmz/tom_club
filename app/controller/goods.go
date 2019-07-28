@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"tom_club/app/model"
 	"tom_club/app/server"
 
 	"github.com/labstack/echo"
@@ -24,7 +25,13 @@ func TestGoods(c echo.Context) (err error) {
 
 	// t, _ := client.Get()
 
-	log.Print(t)
+	log.Print(((t.Data[0]).Goods))
+	db := model.DB
+
+	for _, v := range t.Data {
+		goods := v.Goods
+		db.Create(&goods)
+	}
 
 	return c.JSON(http.StatusOK, "test")
 }

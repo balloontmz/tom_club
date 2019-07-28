@@ -65,3 +65,20 @@ https://www.jianshu.com/p/1eb1d1d3f25e
 
 查看端口是否占用
 netstat -an | grep 10205
+
+## 数据库
+### 初始化数据库
+``  CREATE DATABASE IF NOT EXISTS `tom_club` DEFAULT CHARSET utf8 COLLATE utf8_general_ci; ``
+### 删除数据库
+`` DROP DATABASE `tom_club` ``
+
+### 迁移数据库
+`"github.com/golang-migrate/migrate"`
+默认迁移所有文件 --help查看具体请求  迁移会在数据库建立迁移记录表，mysql参数记得带引号，不然会报错
+` migrate -source file:// -database "mysql://root:ls950322@tcp(127.0.0.1:3306)/tom_club" up `
+
+### 
+经过测试，可以采用自动迁移的方式 -- 添加字段自动添加、修改和删除字段手动删除
+
+按理说 属性一样的两个结构体应该可以视为同一个结构体。但是此处没成功。类型转换的方法暂未找到。
+此处暂定model为最高级的包，即不从model 中导入其他的包，只在其他的包中引用model。
