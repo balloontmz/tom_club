@@ -13,7 +13,7 @@ import (
 //IgnoreMe        int     `gorm:"-"`               // ignore this field
 type Goods struct {
 	gorm.Model
-	GoodsID         sql.NullInt64 `gorm:"column:goods_id;unique_index" json:"-"`
+	GoodsID         sql.NullInt64 `gorm:"column:goods_id;unique_index" json:"-"` // 此处注意如果该变量为存在 valid 需要设置为 true
 	GoodsPic        string        `gorm:"column:goods_pic" json:"goods_pic"`
 	GoodsLongPic    string        `gorm:"column:goods_long_pic" json:"goods_long_pic"`
 	GoodsTitle      string        `gorm:"column:goods_title" json:"goods_title"`

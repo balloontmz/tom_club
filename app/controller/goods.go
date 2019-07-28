@@ -30,7 +30,9 @@ func TestGoods(c echo.Context) (err error) {
 
 	for _, v := range t.Data {
 		goods := v.Goods
-		db.Create(&goods)
+		db.Where(model.Goods{GoodsID: goods.GoodsID}).Assign(goods).FirstOrCreate(&goods) // 如果不存在，则创建。如果存在，则更新改记录的全部值
+		// log.Print("打印一下更新完的记录", goods)
+		// db.Create(&goods)
 	}
 
 	return c.JSON(http.StatusOK, "test")

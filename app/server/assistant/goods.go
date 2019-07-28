@@ -103,8 +103,8 @@ func (response Response) preReturn() {
 			*v.EndTime = et
 		}
 		// 将int转换为数据库格式
-		v.GoodsID = sql.NullInt64{Int64: v.TGoodsID, Valid: false}
-		v.CateID = sql.NullInt64{Int64: v.TCateID, Valid: false}
+		v.GoodsID = sql.NullInt64{Int64: v.TGoodsID, Valid: true}
+		v.CateID = sql.NullInt64{Int64: v.TCateID, Valid: true}
 	}
 }
 
