@@ -11,7 +11,7 @@ var (
 )
 
 //GetGoods test
-func GetGoods() (*assistant.GoodsResponse, error) {
+func GetGoods(p int) (*assistant.GoodsResponse, error) {
 	var client *assistant.Client
 	var err error
 
