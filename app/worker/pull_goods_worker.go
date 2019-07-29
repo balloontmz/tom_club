@@ -19,27 +19,30 @@ func runPullGoods() {
 	index = 0
 	// 应该先获取容许的最大值
 	go func() {
-		mux.Lock()
-		log.Print("加锁后获取到的链接为：", index)
-		// 此处应该先判断页码是否超限。如果是则 break
-		index++
-		indexChan <- index
-		mux.Unlock()
-
-		// 采用拼装好的链接进行
-		go getGoods(0)
+		for {
+			mux.Lock()
+			log.Print("加锁后获取到的链接为：", index)
+			// 此处应该先判断页码是否超限。如果是则 break
+			index++
+			indexChan <- index // 同步写入
+			mux.Unlock()
+		}
+	}()
+	go func() {
+		for i := range indexChan {
+			go getGoods(0, i) //读取到值立马运行
+		}
 	}()
 }
 
-func getGoods(try int) {
-	i := <-indexChan
+func getGoods(try, i int) {
 	log.Print("获取到页数为", i)
 	t, err := server.GetGoods(i)
 	if err != nil {
-		log.Print("拉取出错，重新拉取, 重试次数为：", try)
+		log.Print("拉取出错，重新拉取, 重试次数为：", try, "错误信息为：", err)
 		try++
 		if try < 3 { //拉取出错只重新拉取三次
-			go getGoods(try)
+			go getGoods(try, i)
 		}
 		return
 	}
