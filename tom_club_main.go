@@ -4,6 +4,7 @@ import (
 	conf "tom_club/app/config"
 	"tom_club/app/model"
 	routeregister "tom_club/app/routes"
+	"tom_club/app/worker"
 )
 
 func main() {
@@ -16,6 +17,8 @@ func main() {
 	}
 
 	model.Migrate() // 数据库迁移
+
+	worker.Run()
 
 	router := routeregister.NewEngine() // 初始化路由
 

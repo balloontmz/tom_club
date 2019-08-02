@@ -14,7 +14,7 @@ import (
 func TestGoods(c echo.Context) (err error) {
 	log.Print("test")
 
-	t, err := server.GetGoods()
+	t, err := server.GetGoods(1)
 
 	if err != nil {
 		log.Print(err)

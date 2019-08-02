@@ -20,19 +20,26 @@ func runPullGoods() {
 	// 应该先获取容许的最大值
 	go func() {
 		for {
+			if index >= 100 { // 测试阶段
+				break
+			}
 			mux.Lock()
 			log.Print("加锁后获取到的链接为：", index)
 			// 此处应该先判断页码是否超限。如果是则 break
 			index++
-			indexChan <- index // 同步写入
+			// indexChan <- index // 同步写入
+			getGoods(0, index) //读取到值立马运行
 			mux.Unlock()
 		}
+		close(indexChan)
 	}()
-	go func() {
-		for i := range indexChan {
-			go getGoods(0, i) //读取到值立马运行
-		}
-	}()
+	// 拉取数据采用同步请求，不再异步执行，防止请求超限
+	// go func() {
+	// 	for i := range indexChan {
+	// 		go getGoods(0, i) //读取到值立马运行
+	// 	}
+	// 	log.Print("indexChan 关闭操作")
+	// }()
 }
 
 func getGoods(try, i int) {
@@ -40,10 +47,10 @@ func getGoods(try, i int) {
 	t, err := server.GetGoods(i)
 	if err != nil {
 		log.Print("拉取出错，重新拉取, 重试次数为：", try, "错误信息为：", err)
-		try++
-		if try < 3 { //拉取出错只重新拉取三次
-			go getGoods(try, i)
-		}
+		// try++
+		// if try < 3 { //拉取出错只重新拉取三次
+		// 	go getGoods(try, i)
+		// }
 		return
 	}
 	goodsChan <- t

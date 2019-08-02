@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"strconv"
 	"tom_club/app/cache"
 	"tom_club/app/server/assistant"
 )
@@ -24,11 +25,12 @@ func GetGoods(p int) (*assistant.GoodsResponse, error) {
 
 	r := &assistant.GoodsRequest{
 		APIKey: key,
+		Page:   strconv.Itoa(p),
 	}
 
-	if resp := cache.GetTest(); resp != nil { // 此处测试条件判断语句内进行赋值。。。注意被赋值的变量的生命周期只在条件判断语句中
-		return resp, nil
-	}
+	// if resp := cache.GetTest(); resp != nil { // 此处测试条件判断语句内进行赋值。。。注意被赋值的变量的生命周期只在条件判断语句中
+	// 	return resp, nil
+	// }
 
 	resp, err := client.Goods(context.Background(), r)
 	cache.SetTest("test", resp)
