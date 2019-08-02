@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"tom_club/app/cusresponse"
 	"tom_club/app/model"
 	"tom_club/app/server"
 
@@ -36,4 +37,12 @@ func TestGoods(c echo.Context) (err error) {
 	}
 
 	return c.JSON(http.StatusOK, "test")
+}
+
+//GetGoods 测试拉取商品
+func GetGoods(c echo.Context) (err error) {
+	db := model.DB
+	var goods []model.Goods
+	db.Limit(3).Find(&goods)
+	return c.JSON(http.StatusOK, cusresponse.ResponseFmt{Ret: 1, Msg: "test", Data: goods})
 }
