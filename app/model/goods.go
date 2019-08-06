@@ -40,7 +40,28 @@ type Goods struct {
 	BuyPrice        string        `gorm:"column:buy_price" json:"buy_price"`
 }
 
+//Params 获取结果的参数
+type Params struct {
+	Page int
+	Size int
+}
+
 //TableName Set Goods's table name to be `goods`
 func (Goods) TableName() string {
 	return "goods"
+}
+
+//GetGoods 根据请求的参数获取商品
+func GetGoods(p Params) []Goods {
+	page := p.Page
+	size := p.Size
+	if page <= 0 {
+		page = 1
+	}
+	if size <= 0 {
+		size = 10
+	}
+	var goods []Goods
+	DB.Offset((page - 1) * size).Limit(size).Find(&goods)
+	return goods
 }

@@ -12,7 +12,7 @@ func goodsRoutesRegister(router *echo.Echo) *echo.Echo {
 		return c.String(200, "pong")
 	})
 
-	router.GET("/test-goods", controller.TestGoods)
+	router.GET("/get-goods", controller.GetGoods)
 
 	// router.GET("/json-test", controller.TestJSON)
 
