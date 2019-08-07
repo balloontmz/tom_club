@@ -16,11 +16,16 @@ json:"-"    // 该 tag 序列化时忽略该字段
 
 ## 最新步骤 1551852847
 输出可执行文件
-`GO111MODULE=on go build -o email_api_env/project/tom_club`
-`cp config.ini.example email_api_env/project/config.ini`
-`vim email_api_env/project/config.ini`
-`vim email_api_env/.env`
-`cd email_api_env`
+`GO111MODULE=on go build -o club_api_env/project/tom_club`
+
+`cp config.ini.example club_api_env/project/config.ini`
+
+`vim club_api_env/project/config.ini`
+
+`vim club_api_env/.env`
+
+`cd club_api_env`
+
 `docker-compose up -d --build`
 
 ## 新加定时任务 1551951752
@@ -33,29 +38,29 @@ json:"-"    // 该 tag 序列化时忽略该字段
 ```shell
 GO111MODULE=on go build -o
 
-cp worldmap-prd worldmap_api_env/project/worldmap-api
+cp club-prd club_api_env/project/worldmap-api
 
-cp config.ini worldmap_api_env/project/config.ini
+cp config.ini club_api_env/project/config.ini
 
-cp -r updates/ worldmap_api_env/project/updates
+cp -r updates/ club_api_env/project/updates
 
-cp worldmap_api_env/.env.example worldmap_api_env/.env
+cp club_api_env/.env.example club_api_env/.env
 
-cp LocList.xml.zh-cn ./worldmap_api_env/project/
+cp LocList.xml.zh-cn ./club_api_env/project/
 
-cp LocList.xml.en ./worldmap_api_env/project/
+cp LocList.xml.en ./club_api_env/project/
 
-vim worldmap_api_env/project/config.ini 此处填写用于运行可执行文件的配置
+vim club_api_env/project/config.ini 此处填写用于运行可执行文件的配置
 
-vim worldmap_api_env/.env 此处填写运行 docker 的配置
+vim club_api_env/.env 此处填写运行 docker 的配置
 
-cd worldmap_api_env
+cd club_api_env
 
 docker-compose up -d --build
 ```
 
 交叉编译
-`GOOS=linux GOARCH=amd64 GO111MODULE=on go build -o worldmap-prd`
+`GOOS=linux GOARCH=amd64 GO111MODULE=on go build -o club-prd`
 
 https://www.jianshu.com/p/4b345a9e768e
 
@@ -68,13 +73,19 @@ netstat -an | grep 10205
 
 ## 数据库
 ### 初始化数据库
+
 ``  CREATE DATABASE IF NOT EXISTS `tom_club` DEFAULT CHARSET utf8 COLLATE utf8_general_ci; ``
+
 ### 删除数据库
+
 `` DROP DATABASE `tom_club` ``
 
 ### 迁移数据库
+
 `"github.com/golang-migrate/migrate"`
+
 默认迁移所有文件 --help查看具体请求  迁移会在数据库建立迁移记录表，mysql参数记得带引号，不然会报错
+
 ` migrate -source file:// -database "mysql://root:ls950322@tcp(127.0.0.1:3306)/tom_club" up `
 
 ### 
