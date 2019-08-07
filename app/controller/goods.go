@@ -22,11 +22,3 @@ func GetGoods(c echo.Context) (err error) {
 	goods := model.GetGoods(p)
 	return c.JSON(http.StatusOK, cusresponse.ResponseFmt{Ret: 1, Msg: "", Data: goods})
 }
-
-//GetGoods 测试拉取商品
-func GetGoods(c echo.Context) (err error) {
-	db := model.DB
-	var goods []model.Goods
-	db.Limit(3).Find(&goods)
-	return c.JSON(http.StatusOK, cusresponse.ResponseFmt{Ret: 1, Msg: "test", Data: goods})
-}
