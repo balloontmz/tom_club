@@ -1,5 +1,6 @@
 
 import {fecthData} from './common.js'
+import { getScrollTop, getScrollHeight, getWindowHeight } from './scrollBottom.js'
 
 console.log('hello world')
 
@@ -28,7 +29,11 @@ document.addEventListener('readystatechange', async function (event) {
 
 // 此处如果不加 true 无法捕获事件！！！
 window.addEventListener('scroll', function(e) {
-    console.log('查看 gdata 数据', gData)
+    // console.log('查看 gdata 数据', gData)
+    if(getScrollTop() + getWindowHeight() == getScrollHeight()){
+        console.log(getScrollTop(), getWindowHeight(), getScrollHeight())
+        alert("you are in the bottom!")
+    }
 }, true)
 
 // document.addEventListener('readystatechange', function () {
@@ -44,7 +49,7 @@ function newComic(goods) {
     var text = document.createTextNode(goods.goods_short_title)
 
     img.setAttribute('src', goods.goods_pic)
-    h1.appendChild(text)
+    // h1.appendChild(text)
 
     para.className = 'comic'
     para.appendChild(img)
