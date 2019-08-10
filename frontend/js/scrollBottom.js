@@ -17,8 +17,10 @@ export function getScrollHeight(){
 export function getWindowHeight(){
     var clientHeight=0;
     if(document.body.clientHeight&&document.documentElement.clientHeight){
+        console.log('获取到的窗口高度')
         var clientHeight = (document.body.clientHeight<document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;        
     }else{
+        console.log('获取到的窗口高度 else')
         var clientHeight = (document.body.clientHeight>document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;    
     }
     return clientHeight;
