@@ -9,6 +9,7 @@ import (
 	"tom_club/app/server"
 
 	"github.com/labstack/echo"
+	"github.com/labstack/gommon/log"
 )
 
 //GetGoods 拉取商品
@@ -26,7 +27,10 @@ func GetGoods(c echo.Context) (err error) {
 
 //Test 测试
 func Test(c echo.Context) (err error) {
-	goods, _ := server.GetGoods(1)
+	goods, e := server.GetGoods(1)
+	if err != nil {
+		log.Print("拉取数据出错", e)
+	}
 	db := model.DB
 	for _, val := range goods.Data {
 		goods := val.Goods
