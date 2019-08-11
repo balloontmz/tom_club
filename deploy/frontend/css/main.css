@@ -1,0 +1,187 @@
+* {
+    /* 清除全局内外边距 */
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #e5e8e1;
+    font-family: sans-serif;
+}
+.container {
+    min-height:100vh;
+    /* background: blueviolet; */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.content {
+    overflow-y: scroll;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 2em;
+    background: #e5e8e1;
+}
+.comic {
+    width: 48.5%;
+    margin: 1%;
+    margin-top: 0;
+    float: left;
+    /* 居中 */
+    text-align: center;
+    /* 较深的灰色，区分框区域 */
+    background: #f9f9f9;
+    /* 采用阴影描绘出边框线 */
+    box-shadow: 0 0 1px rgba(0, 0, 0, 1) inset; 
+    /* box-sizing: border-box; */
+    border-radius: .5em;
+    overflow: hidden;
+}
+/* 指定类下的子元素的样式 */
+.comic h1 {
+    color: #505050;
+    font-weight: normal;
+    /* 指定文字大小 */
+    font-size: 1em;
+    width: 90%; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+
+}
+.comic img {
+    min-height: 145.5px;
+    width: 100%;
+}
+/* 清除偶数个的元素的左外边距。从而使边框到屏幕以及屏幕到边框的距离均相等 */
+.comic:nth-child(even){
+    margin-left: 0;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    width: 100%;
+    height: 2em;
+    padding: 0;
+    /* background: yellow; */
+}
+
+.search-input {
+    position: relative;
+    top: .1em;
+    left: .1em;
+    width: 90%;
+}
+
+.search-input input {
+    /* height: 100%;
+    width: 85%;
+    border: none;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 2rem; */
+    /* top: .15rem; */
+    /* left: .2rem; */
+    /* opacity: .7; */
+    /* padding: 0 .7rem; */
+
+    display: block;
+    margin: 0;
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 80%;
+    width: 100%;
+    height: 2em;
+    border-radius: 2em;
+    background-color: #fff;
+    /* 透明度 */
+    opacity: .7;
+    border: none;
+    float: left;
+}
+
+.searchimg {
+    float: right;
+    position: relative;
+    /* right: .4em; */
+    top: .4em;
+    width: 10%;
+}
+
+.searchimg img {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+/* input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 100%;
+    width: 100%;
+    height: 100%;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+    display: none;
+} */
+
+/* 先保留，后看 */
+input {
+    /* 取消输入框高亮 */
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 11px system-ui;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
+
+.price-area {
+    overflow: hidden;
+    display: flex;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    color: #999;
+}
+
+.price-area img {
+    width: 2em;
+    height: 2em;
+    min-height: 1em;
+}

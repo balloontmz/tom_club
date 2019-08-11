@@ -93,3 +93,17 @@ netstat -an | grep 10205
 
 按理说 属性一样的两个结构体应该可以视为同一个结构体。但是此处没成功。类型转换的方法暂未找到。
 此处暂定model为最高级的包，即不从model 中导入其他的包，只在其他的包中引用model。
+
+## 最新步骤 1565535567
+输出可执行文件
+`GOOS=linux GOARCH=amd64 GO111MODULE=on go build -o deploy/club-prd`
+
+`cp config.ini.example club_api_env/project/config.ini`
+
+`vim club_api_env/project/config.ini`
+
+`vim club_api_env/.env`
+
+`cd club_api_env`
+
+`docker-compose up -d --build`
