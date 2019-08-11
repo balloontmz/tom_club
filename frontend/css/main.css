@@ -41,7 +41,10 @@ body {
     /* 较深的灰色，区分框区域 */
     background: #f9f9f9;
     /* 采用阴影描绘出边框线 */
-    box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset; 
+    box-shadow: 0 0 1px rgba(0, 0, 0, 1) inset; 
+    /* box-sizing: border-box; */
+    border-radius: .5em;
+    overflow: hidden;
 }
 /* 指定类下的子元素的样式 */
 .comic h1 {
@@ -53,10 +56,11 @@ body {
     overflow: hidden; 
     white-space: nowrap; 
     text-overflow: ellipsis;
+
 }
 .comic img {
     min-height: 145.5px;
-    width: 80%;
+    width: 100%;
 }
 /* 清除偶数个的元素的左外边距。从而使边框到屏幕以及屏幕到边框的距离均相等 */
 .comic:nth-child(even){
@@ -114,8 +118,9 @@ body {
 .searchimg {
     float: right;
     position: relative;
-    right: .4em;
+    /* right: .4em; */
     top: .4em;
+    width: 10%;
 }
 
 .searchimg img {
@@ -163,4 +168,20 @@ input {
     border-style: inset;
     border-color: initial;
     border-image: initial;
+}
+
+.price-area {
+    overflow: hidden;
+    display: flex;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    color: #999;
+}
+
+.price-area img {
+    width: 2em;
+    height: 2em;
+    min-height: 1em;
 }

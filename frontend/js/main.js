@@ -74,9 +74,21 @@ function newComic(goods) {
     img.setAttribute('src', goods.goods_pic)
     h1.appendChild(text)
 
+    var priceArea = document.createElement('div')
+    var priceSpan = document.createElement('span')
+    var couponImg = document.createElement('img')
+    // var spanText = document.createElement('<span>' + '<em>¥</em>' + goods.buy_price + '</span>')
+
+    priceSpan.innerHTML = '<em>¥</em>' + goods.buy_price
+    priceArea.className = 'price-area'
+
+    priceArea.appendChild(priceSpan)
+    priceArea.appendChild(couponImg)
+
     para.className = 'comic'
     para.appendChild(img)
     para.appendChild(h1)
+    para.appendChild(priceArea)
     para.addEventListener('click', clickFunc(goods.ID), false) // 事件监听记得传入一个回调函数，而不是函数的调用。如果传入调用记得返回闭包
     return para
 }
