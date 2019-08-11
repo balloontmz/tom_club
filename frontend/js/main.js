@@ -1,14 +1,12 @@
 
 import {fecthData} from './common.js'
 import { getScrollTop, getScrollHeight, getWindowHeight } from './scrollBottom.js'
-
-console.log('hello world')
+import { Init, bind } from './popup.js'
 
 // 定义全局变量 data为空数组
 var gData = []
 var index = 1
 var content = document.getElementsByClassName('content')[0]
-
 // 定义一个页码的修改器回调函数
 function add() {
     index++
@@ -18,12 +16,27 @@ function add() {
 document.addEventListener('readystatechange', async function (event) {
     // 为什么此处除了 complete 其他的事件都没有进入，是因为 module 导入异步加载导致的吗？
     if (document.readyState === "complete") {
+        // document.documentElement.appendChild(popup)
+        Init()
         var data = await fecthData(add, index)
         gData = data
+        // for (let i = 0; i < data.length; i++) {
+        //     const goods = data[i];
+        //     var e = newComic(goods)
+        //     content.appendChild(e)
+        // }
+        // var col = document.getElementsByClassName('comic')
+        // console.log('here', col)
+        // for (let i = 0; i < col.length; i++) {
+        //     const element = col[i]
+        //     console.log('here')
+        //     element.addEventListener('click', clickFunc, true)
+            
+        // }
         gData.forEach(goods => {
-            content.appendChild(newComic(goods))
+            var e = newComic(goods)
+            content.appendChild(e)
         })
-        // console.log('是否修改成功', index)
     }
 })
 
@@ -51,6 +64,7 @@ window.addEventListener('scroll', async function(e) {
 //     }
 // })
 
+// 同时应该添加点击事件 
 function newComic(goods) {
     var para = document.createElement('div')
     var img = document.createElement('img')
@@ -58,11 +72,20 @@ function newComic(goods) {
     var text = document.createTextNode(goods.goods_short_title)
 
     img.setAttribute('src', goods.goods_pic)
-    // h1.appendChild(text)
+    h1.appendChild(text)
 
     para.className = 'comic'
     para.appendChild(img)
     para.appendChild(h1)
+    para.addEventListener('click', clickFunc(goods.ID), false) // 事件监听记得传入一个回调函数，而不是函数的调用。如果传入调用记得返回闭包
     return para
 }
 // content.appendChild(newComic())
+
+function clickFunc(id){
+    var callback = function () {
+        console.log(id)
+        bind()
+    }
+    return callback
+}
