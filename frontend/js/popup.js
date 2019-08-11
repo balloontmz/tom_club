@@ -15,7 +15,7 @@ export function Init() {
 }
 
 export function bind() {
-    console.log('在此处')
-    console.log(popup)
+    // console.log('在此处')
+    // console.log(popup)
     popup.classList.toggle('show')
 }
