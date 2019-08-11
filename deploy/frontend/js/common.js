@@ -1,5 +1,5 @@
 export async function fecthData(callback, index) {
-    var host = window.location.host || document.domain
+    var host = window.location.host
     var url = host + '/get-goods?page=' + index
     callback()
     var data =  await fetch(url, {
