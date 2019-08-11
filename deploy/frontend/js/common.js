@@ -1,6 +1,6 @@
 export async function fecthData(callback, index) {
-    var host = window.location.host
-    var url = host + '/get-goods?page=' + index
+    var host = 'https://' + window.location.host
+    var url = '/get-goods?page=' + index
     callback()
     var data =  await fetch(url, {
         // body: JSON.stringify(data), // must match 'Content-Type' header
