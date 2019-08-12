@@ -123,6 +123,7 @@ body {
     top: .4em;
     width: 10%;
     background-color: rgba(255, 255, 255, 0);
+    border-style: none;
 }
 
 .searchimg img {
