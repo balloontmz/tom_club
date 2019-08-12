@@ -39,10 +39,11 @@ body {
     /* 居中 */
     text-align: center;
     /* 较深的灰色，区分框区域 */
-    background: #f9f9f9;
+    background: #fff;
     /* 采用阴影描绘出边框线 */
-    box-shadow: 0 0 1px rgba(0, 0, 0, 1) inset; 
-    /* box-sizing: border-box; */
+    /* box-shadow: 0 0 1px rgba(0, 0, 0, 1) inset;  */
+    box-sizing: border-box;
+    /* border: .2px solid black; */
     border-radius: .5em;
     overflow: hidden;
 }
@@ -121,11 +122,13 @@ body {
     /* right: .4em; */
     top: .4em;
     width: 10%;
+    background-color: rgba(255, 255, 255, 0);
 }
 
 .searchimg img {
     width: 1.5em;
     height: 1.5em;
+    background: rgba(255, 255, 255, 0)
 }
 
 /* input[type=search] {
@@ -171,6 +174,7 @@ input {
 }
 
 .price-area {
+    position: relative;
     overflow: hidden;
     display: flex;
     -ms-flex-align: end;
@@ -178,10 +182,22 @@ input {
     -ms-flex-pack: justify;
     justify-content: space-between;
     color: #999;
+    height: 2em;
 }
 
 .price-area img {
-    width: 2em;
-    height: 2em;
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
     min-height: 1em;
+    bottom: .2em;
+    right: .2em;
+}
+
+.price-area span {
+    position: absolute;
+    bottom: .2em;
+    left: .2em;
+    color: #FF3B44;
+    font-family: Arial, Helvetica, sans-serif;
 }
